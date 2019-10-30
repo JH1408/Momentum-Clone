@@ -1,49 +1,30 @@
-# v9-toucans-team-05  
-https://momentumdash.com/ | Voyage-9 | https://chingu.io/  
-![v9-toucans-team-05-img](https://user-images.githubusercontent.com/31202339/61266562-40476380-a7cf-11e9-922d-26941ee10961.png)
-Site published at https://v9-toucans-team-05.herokuapp.com/
+# Momentum Clone 
+
 ## About
-We cloned famous Chrome-extension called "Momentum".
+This productivity app is a clone of the famous Momentum Chrome Extension. It was created during a Chingu Voyage in collaboration with  [Tetsuya A](https://github.com/peppertaro) & [Sarah](https://github.com/smellaphant). Find the original repo [here](https://github.com/chingu-voyages/v9-toucans-team-05).
+I was responsible for the weather, clock, greeting section, link section and quote section. 
 
-## Team Members  
- [Tetsuya A](https://github.com/peppertaro)  
- [Josy](https://github.com/JH1408)  
- [Sarah](https://github.com/smellaphant)  
+See the project in action [here](https://v9-toucans-team-05.herokuapp.com/).
 
-## Technologies  
+## Features
+ - Each time the app is opened, a beautiful new image is displayed by using the [Unsplash API](https://unsplash.com/developers) 
+ - Users are greeted with one inspirational quote per day, using the [Quotable API](https://github.com/lukePeavey/quotable)
+ - See the time and weather at your current location as well as a 5 day forecast, using hte [Meta Weather API](https://www.metaweather.com/api/ )
+ 
+## Run the project
+
+- Clone this project
+- cd into the project directory
+- Run `npm install` in your command line from the root folder
+- Create a `.env` file in the root of the project with your Unsplash API key
+- Run `npm start` in your command line
+- Visit http://localhost:8080 in your browser
+
+## Tech Stack
  - HTML  
  - CSS  
- - Javascript(partially jQuery)  
+ - Javascript & jQuery
  - Browser Local Storage  
  - Node.js  
- - Heroku  
- - Meta Weather API https://www.metaweather.com/api/  
- - Random Quotes API https://github.com/lukePeavey/quotable  
- - unsplash API [https://unsplash.com/developers]  
-(Source unsplash API [https://source.unsplash.com/] when the access exceeds limit)  
-
-
-### Getting Started  
-Clone team repo by running git clone command in your terminal with the URL from your repo like:  
-```
-git clone https://github.com/chingu-voyages/v9-toucans-team-05.git  
-```
-
-### Project setup
-```
-npm install
-```
-( if it does not work,  [npm i node-fetch express ejs dotenv --save])  
-then create .env file with following key on your project
-```
-US_AcsKey = YOUR-UNSPLASH-API-ACCESS-KEY-HERE
-```
-
-(If you want to publish it on heroku, you should set environment variable on heroku.)
-```
-heroku config:set US_AcsKey = YOUR-UNSPLASH-API-ACCESS-KEY-HERE
-```
-### To run
-```
-npm start
-```
+ - Express
+ - EJS
