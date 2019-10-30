@@ -1,7 +1,7 @@
 # Momentum Clone 
 
 ## About
-This productivity app is a clone of the famous Momentum Chrome Extension. It was created during a Chingu Voyage in collaboration with  [Tetsuya A](https://github.com/peppertaro) & [Sarah](https://github.com/smellaphant). Find the original repo [here](https://github.com/chingu-voyages/v9-toucans-team-05).
+This productivity app is a clone of the famous Momentum Chrome Extension. It was created during a Chingu Voyage in collaboration with  [Tetsuya A](https://github.com/peppertaro) & [Sarah](https://github.com/smellaphant). Find the original repo [here](https://github.com/chingu-voyages/v9-toucans-team-05).<br>
 I was responsible for the weather, clock, greeting section, link section and quote section. 
 
 See the project in action [here](https://v9-toucans-team-05.herokuapp.com/).
@@ -10,6 +10,9 @@ See the project in action [here](https://v9-toucans-team-05.herokuapp.com/).
  - Each time the app is opened, a beautiful new image is displayed by using the [Unsplash API](https://unsplash.com/developers) 
  - Users are greeted with one inspirational quote per day, using the [Quotable API](https://github.com/lukePeavey/quotable)
  - See the time and weather at your current location as well as a 5 day forecast, using hte [Meta Weather API](https://www.metaweather.com/api/ )
+ - Search the web by choosing from Google, DuckDuckGo and Bing
+ - Keep track of your tasks with to-do lists
+ - Save important links
  
 ## Run the project
 
