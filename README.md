@@ -4,7 +4,7 @@
 This productivity app is a clone of the famous Momentum Chrome Extension. It was created during a Chingu Voyage in collaboration with  [Tetsuya A](https://github.com/peppertaro) & [Sarah](https://github.com/smellaphant). Find the original repo [here](https://github.com/chingu-voyages/v9-toucans-team-05).<br>
 I was responsible for the weather, clock, greeting section, link section and quote section. 
 
-See the project in action [here](https://v9-toucans-team-05.herokuapp.com/).
+See the project in action [here](https://josy-momentum-clone.herokuapp.com/).
 
 ## Features
  - Each time the app is opened, a beautiful new image is displayed by using the [Unsplash API](https://unsplash.com/developers) 
