@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     BaseUrl ='https://api.unsplash.com/photos/random/?',
     collections ='collections='+collectionID
     options = '&featured=true&orientation=landscape',
-    APIkey = '&client_id=' + process.env.US_AcsKey,
+    APIkey = '&client_id=' + process.env.UNSPLASH_API_KEY,
         url = BaseUrl + collections + options + APIkey;
       return url;
     }
@@ -65,6 +65,6 @@ async function fetchURL(url) {
 const server = http.createServer(app);
 // Listen to the App Engine-specified port, or 8080 otherwise
 const PORT = process.env.PORT || 8080;
-  server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}...`);
+server.listen(PORT, () => {
+  console.log(`Server listening on port ${process.env.PORT}...`);
 });
