@@ -1,10 +1,10 @@
-var day = new Date();
-var focusDay = day.getDate() + "/" + (day.getMonth() + 1 );
+const day = new Date();
+const focusDay = day.getDate() + "/" + (day.getMonth() + 1 );
 
 // Save focus with ENTER
 $(document).on('keypress', '.focus', function(e){
     if(e.which == 13){
-      var inputFocus = '<div class="todays-focus"><ul><li class="today">TODAY</li><li class="focus-line"><i class="far fa-square unchecked"></i><div class="user-focus">' + $('.focus').val() + '</div><span class="remove-focus"><i class="icon ion-md-close icon-close"></i></span></li></ul>';
+      const inputFocus = '<div class="todays-focus"><ul><li class="today">TODAY</li><li class="focus-line"><i class="far fa-square unchecked"></i><div class="user-focus">' + $('.focus').val() + '</div><span class="remove-focus"><i class="icon ion-md-close icon-close"></i></span></li></ul>';
 
       $('.focus').remove();
       $('.what').remove();
@@ -15,7 +15,7 @@ $(document).on('keypress', '.focus', function(e){
 });
 
 // Restore user input
-var savedFocus = window.localStorage.getItem('focus');
+const savedFocus = window.localStorage.getItem('focus');
 
 $(document).ready(function() {
   if ("focus" in localStorage) {
@@ -49,7 +49,7 @@ $(document).on('click', '.unchecked', function() {
   $('.user-focus').css('text-decoration', 'line-through');
   $('.remove-focus').remove();
   $('.focus-line').append('<span class="add-focus"><i class="fas fa-plus"></i></span>');
-  var focusDone = '<div class="todays-focus"><ul><li class="today">TODAY</li><li class="focus-line"><i class="far fa-check-square" style="visibility: visible;"></i><div class="user-focus" style="text-decoration: line-through;">' + $('.user-focus').html() + '</div><span class="add-focus"><i class="fas fa-plus"></i></span></li></ul></div>';
+  const focusDone = '<div class="todays-focus"><ul><li class="today">TODAY</li><li class="focus-line"><i class="far fa-check-square" style="visibility: visible;"></i><div class="user-focus" style="text-decoration: line-through;">' + $('.user-focus').html() + '</div><span class="add-focus"><i class="fas fa-plus"></i></span></li></ul></div>';
   window.localStorage.setItem('focus', focusDone);
 });
 
@@ -59,7 +59,7 @@ $(document).on('click', '.fa-check-square', function() {
   $('.user-focus').css('text-decoration', 'none');
   $('.focus-line').append('<span class="remove-focus"><i class="icon ion-md-close icon-close"></i></span>');
   $('.add-focus').remove();
-  var focusUndone = '<div class="todays-focus"><ul><li class="today">TODAY</li><li class="focus-line"><i class="far fa-square unchecked"></i><div class="user-focus">' + $('.user-focus').html() + '</div><span class="remove-focus"><i class="icon ion-md-close icon-close"></i></span></li></ul></div>';
+  const focusUndone = '<div class="todays-focus"><ul><li class="today">TODAY</li><li class="focus-line"><i class="far fa-square unchecked"></i><div class="user-focus">' + $('.user-focus').html() + '</div><span class="remove-focus"><i class="icon ion-md-close icon-close"></i></span></li></ul></div>';
   window.localStorage.setItem('focus', focusUndone);
 });
 
@@ -71,8 +71,8 @@ $(document).on('click', '.fa-plus', function() {
 });
 
 // Delete focus after 12am
-var savedDay = window.localStorage.getItem('focus-day');
-var heute = day.getDate() + "/" + (day.getMonth() + 1 );
+const savedDay = window.localStorage.getItem('focus-day');
+const heute = day.getDate() + "/" + (day.getMonth() + 1 );
 
 function deleteFocus() {
   if (savedDay != heute) {
@@ -84,7 +84,7 @@ deleteFocus();
 // Save username with ENTER
 $(document).on('keypress', '.user-name', function(e){
     if(e.which == 13){
-      var username = $('.user-name').val();
+      const username = $('.user-name').val();
       $('.user-name').remove();
       $('.message').append('<span class="name"> ' + username + '.</span><span class="more"><i class="fas fa-ellipsis-h ellipsis focus-ellipsis"></i></span>');
       window.localStorage.setItem('username', username);
@@ -92,7 +92,7 @@ $(document).on('keypress', '.user-name', function(e){
 });
 
 // Restore username
-var savedName = window.localStorage.getItem('username');
+const savedName = window.localStorage.getItem('username');
 
 $(document).ready(function() {
   if ("username" in localStorage) {
@@ -118,8 +118,8 @@ $(document).on('mouseout', '.message', function() {
 // Click on more
 $(document).on('click', '.more', function() {
   $('.settings').fadeToggle();
-  var offset = $(this).position();
-  var leftTotal = parseInt(offset.left, 10) + 12 + 'px';
+  const offset = $(this).position();
+  const leftTotal = parseInt(offset.left, 10) + 12 + 'px';
   $('.settings').css('left', leftTotal);
 });
 

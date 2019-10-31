@@ -1,11 +1,16 @@
-var savedQuote = window.localStorage.getItem('quote');
-var savedAuthor = window.localStorage.getItem('author');
-var savedHeart = window.localStorage.getItem('heart');
-var savedQuotes = window.localStorage.getItem('likedQuotes');
+const savedQuote = window.localStorage.getItem('quote');
+const savedAuthor = window.localStorage.getItem('author');
+const savedHeart = window.localStorage.getItem('heart');
+const savedQuotes = window.localStorage.getItem('likedQuotes');
 
-var day = new Date();
-var quoteDay = day.getDate() + "/" + (day.getMonth() + 1 );
+const date = new Date();
+const quoteDay = date.getDate() + "/" + (date.getMonth() + 1 );
 
+let liked = [];
+if(savedQuotes) {
+  console.log(savedQuotes);
+  liked = JSON.parse(savedQuotes);
+}
 
 $(document).ready(function() {
   if ("quote" in localStorage) {
@@ -31,8 +36,20 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   if ("likedQuotes" in localStorage) {
-    $('.liked-quotes-container').html(savedQuotes);
-    $('.not-saved').remove();
+    if(liked.length === 0){
+      window.localStorage.removeItem('likedQuotes');
+      $('.liked-quotes-container').append("<p class='not-saved' style='color: rgba(237, 237, 237, 0.6)'>You haven't liked any quotes yet.</p>");
+    } else {
+      let quotes = [];
+      for (let i = 0; i < liked.length; i++) {
+        const index = liked[i].lastIndexOf('"')
+        const quote = liked[i].substring(0, index + 1)
+        const author = liked[i].substring(index + 2)
+        quotes += `<p class="liked-quote">${quote}<span> ${author}</span><i class="fas fa-heart liked liked-container"></i></p><hr>`;
+      }
+      $('.liked-quotes-container').append(quotes)
+      $('.not-saved').remove();
+    }
   } else {
     $('.liked-quotes-container').append("<p class='not-saved' style='color: rgba(237, 237, 237, 0.6)'>You haven't liked any quotes yet</p>");
   }
@@ -53,21 +70,48 @@ deleteQuote();
 
 // Like quote
 $(document).on('click', '.like', function() {
-  $('.like').removeClass('far like').addClass('fas liked');
+  $('.like').removeClass('far like').addClass('fas liked liked-single');
   window.localStorage.setItem('heart', $('.heart').html());
-  $('.liked-quotes-container').append('<p class="liked-quote">' + $('.quote').text() + ' <span>' + $('.author').text() + ' '+ ' </span><i class="fas fa-heart liked"></i></p><hr>');
-  window.localStorage.setItem('likedQuotes', $('.liked-quotes-container').html());
+  $('.liked-quotes-container').append('<p class="liked-quote">' + $('.quote').text() + ' <span>' + $('.author').text() + ' '+ ' </span><i class="fas fa-heart liked liked-container"></i></p><hr>');
+  console.log($('.liked-quote').last().text());
+  liked.push($('.liked-quote').last().text());
+  window.localStorage.setItem('likedQuotes', JSON.stringify(liked));
   $('.not-saved').remove();
 });
 
 // Remove like
-$(document).on('click', '.liked', function() {
-  $('.liked').removeClass('fas liked').addClass('far like');
+$(document).on('click', '.liked-single', function() {
+  $('.liked-single').removeClass('fas liked').addClass('far like');
   window.localStorage.removeItem('heart');
-  $('.liked-quote:first').remove();
-  $('hr:eq(1)').remove();
-  window.localStorage.setItem('likedQuotes', $('.liked-quotes-container').html());
-  $('.liked-quotes-container').append("<p class='not-saved' style='color: rgba(237, 237, 237, 0.6)'>You haven't liked any quotes yet.</p>");
+  $('.liked-quote:last').remove();
+  const index = liked.length;
+  $(`hr:eq(${index})`).remove();
+  liked.pop();
+  window.localStorage.setItem('likedQuotes', JSON.stringify(liked));
+  if(!$('.liked-quote').length){
+    window.localStorage.removeItem('likedQuotes');
+    $('.liked-quotes-container').append("<p class='not-saved' style='color: rgba(237, 237, 237, 0.6)'>You haven't liked any quotes yet.</p>");
+  }
+});
+console.log(liked.length);
+$(document).on('click', '.liked-container', function(e) {
+  const deleted = $(e.target).parent().text()
+  const filteredQuotes = liked.filter(function(e) { return e !== deleted; });
+  console.log(deleted.includes($('.quote').text()));
+  console.log(deleted);
+  console.log($('.quote').text());
+  if(deleted.includes($('.quote').text())) {
+    $('.liked-single').removeClass('fas liked').addClass('far like');
+    window.localStorage.removeItem('heart');
+  }
+  $(e.target).parent().next().remove();
+  $(e.target).parent().remove()
+  window.localStorage.setItem('likedQuotes', JSON.stringify(filteredQuotes));
+  console.log(liked.length);
+  if(!$('.liked-quote').length){
+    window.localStorage.removeItem('likedQuotes');
+    $('.liked-quotes-container').append("<p class='not-saved' style='color: rgba(237, 237, 237, 0.6)'>You haven't liked any quotes yet.</p>");
+  }
 });
 
 // Hover over quote
@@ -86,8 +130,8 @@ $(document).on('mouseout', '.Daily-Quote', function() {
 // View liked quotes
 $('.liked-quotes').click(function(){
   $('.liked-quotes-container').fadeToggle();
-  var offset = $(this).position();
-  var leftTotal = parseInt(offset.left, 10) - 23 +'px';
+  const offset = $(this).position();
+  const leftTotal = parseInt(offset.left, 10) - 23 +'px';
   $('.liked-quotes-container').css('left', leftTotal);
 });
 

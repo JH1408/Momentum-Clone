@@ -6,8 +6,8 @@ $('.links').click(function(){
 
 // Close on click outside the container
 $(document).on('click', function(event) {
-    var trigger = $('.links')[0];
-    var dropdown = $('.custom-links-container');
+    const trigger = $('.links')[0];
+    const dropdown = $('.custom-links-container');
     if (dropdown !== event.target && !dropdown.has(event.target).length && trigger !== event.target) {
       $('.custom-links-container').fadeOut();
     }});
@@ -27,8 +27,8 @@ $(document).on('click', '.remove', function(e) {
 });
 
 // Save changes with ENTER
-var inputURL;
-var inputName;
+let inputURL;
+let inputName;
 
 $('.link-list').on("keypress", function(e){
     if(e.which == 13){
@@ -42,7 +42,7 @@ $('.link-list').on("keypress", function(e){
 });
 
 // Save and retrieve user input when browser refreshes
-var savedLinks = window.localStorage.getItem('links');
+const savedLinks = window.localStorage.getItem('links');
 
 $(document).ready(function() {
   if ("links" in localStorage) {

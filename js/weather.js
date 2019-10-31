@@ -1,12 +1,12 @@
 
 // Time
-var update = function() {
+const update = function() {
     $('#current-time').html(moment().format('HH:mm'));
 };
 setInterval(update, 1000);
 
 // Welcome Message
-var hour = moment().format('HH');
+const hour = moment().format('HH');
 if (hour >= 4 && hour < 12) {
  $('#message').html("Good morning,");
 } else if (hour>=12 && hour < 17) {
@@ -22,19 +22,19 @@ if (navigator.geolocation) {
  alert('Geolocation is not supported in your browser');
 }
 
-var weatherDescriptionTwo;
-var weatherDescriptionThree;
-var weatherDescriptionFour;
-var weatherDescriptionFive;
-var weatherDescription;
-var temp;
-var tempMin;
+let weatherDescriptionTwo;
+let weatherDescriptionThree;
+let weatherDescriptionFour;
+let weatherDescriptionFive;
+let weatherDescription;
+let temp;
+let tempMin;
 
 
 function showPosition(position) {
-  var geoApi = "https://api.codetabs.com/v1/proxy?quest=https://www.metaweather.com/api/location/search/?lattlong=" + position.coords.latitude + "," + position.coords.longitude;
+  const geoApi = "https://api.codetabs.com/v1/proxy?quest=https://www.metaweather.com/api/location/search/?lattlong=" + position.coords.latitude + "," + position.coords.longitude;
     $.getJSON(geoApi, function(data){
-      var weatherApi = "https://api.codetabs.com/v1/proxy?quest=https://www.metaweather.com/api/location/" + data[0].woeid;
+      const weatherApi = "https://api.codetabs.com/v1/proxy?quest=https://www.metaweather.com/api/location/" + data[0].woeid;
       $(".location").html(data[0].title);
       $.getJSON(weatherApi, function(json){
         $(".temperature").html(json.consolidated_weather[0].the_temp.toFixed(0) + "°");
@@ -183,31 +183,31 @@ function showPosition(position) {
     $(".weekday-one").html(moment().format('ddd').toUpperCase());
 
     function getWeekDay(date){
-      var weekdays = new Array(
+      const weekdays = new Array(
           "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
       );
-      var day = date.getDay();
+      const day = date.getDay();
       return weekdays[day];
     }
 
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    var weekDayTwo = getWeekDay(tomorrow);
+    const weekDayTwo = getWeekDay(tomorrow);
     $(".weekday-two").html(weekDayTwo.slice(0, 3).toUpperCase());
 
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 2);
-    var weekDayThree = getWeekDay(tomorrow);
+    const weekDayThree = getWeekDay(tomorrow);
     $(".weekday-three").html(weekDayThree.slice(0, 3).toUpperCase());
 
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 3);
-    var weekDayFour = getWeekDay(tomorrow);
+    const weekDayFour = getWeekDay(tomorrow);
     $(".weekday-four").html(weekDayFour.slice(0, 3).toUpperCase());
 
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 4);
-    var weekDayFive = getWeekDay(tomorrow);
+    const weekDayFive = getWeekDay(tomorrow);
     $(".weekday-five").html(weekDayFive.slice(0, 3).toUpperCase());
 
    // Show forecast on click
@@ -231,7 +231,7 @@ function showPosition(position) {
     $('#current-temperature').remove();
     $('.max-temperature-det').remove();
     $('.min-temperature-det').remove();
-    var x = '<span class="max-temperature-det">' + tempTwo + '</span><span class="min-temperature-det">' + tempMinTwo + '</span>';
+    const x = '<span class="max-temperature-det">' + tempTwo + '</span><span class="min-temperature-det">' + tempMinTwo + '</span>';
     $('#current-temp-icon').append(x);
     $('.forecast-day').remove();
     $('#forecast-location').after('<div class="forecast-day">' + weekDayTwo + '</div>');
@@ -244,7 +244,7 @@ function showPosition(position) {
     $('#current-temperature').remove();
     $('.max-temperature-det').remove();
     $('.min-temperature-det').remove();
-    var x = '<span class="max-temperature-det">' + tempThree + '</span><span class="min-temperature-det">' + tempMinThree + '</span>';
+    const x = '<span class="max-temperature-det">' + tempThree + '</span><span class="min-temperature-det">' + tempMinThree + '</span>';
     $('#current-temp-icon').append(x);
     $('.forecast-day').remove();
     $('#forecast-location').after('<div class="forecast-day">' + weekDayThree + '</div>');
@@ -257,7 +257,7 @@ function showPosition(position) {
     $('#current-temperature').remove();
     $('.max-temperature-det').remove();
     $('.min-temperature-det').remove();
-    var x = '<span class="max-temperature-det">' + tempFour + '</span><span class="min-temperature-det">' + tempMinFour + '</span>';
+    const x = '<span class="max-temperature-det">' + tempFour + '</span><span class="min-temperature-det">' + tempMinFour + '</span>';
     $('#current-temp-icon').append(x);
     $('.forecast-day').remove();
     $('#forecast-location').after('<div class="forecast-day">' + weekDayFour + '</div>');
@@ -270,7 +270,7 @@ function showPosition(position) {
     $('#current-temperature').remove();
     $('.max-temperature-det').remove();
     $('.min-temperature-det').remove();
-    var x = '<span class="max-temperature-det">' + tempFive + '</span><span class="min-temperature-det">' + tempMinFive + '</span>';
+    const x = '<span class="max-temperature-det">' + tempFive + '</span><span class="min-temperature-det">' + tempMinFive + '</span>';
     $('#current-temp-icon').append(x);
     $('.forecast-day').remove();
     $('#forecast-location').after('<div class="forecast-day">' + weekDayFive + '</div>');

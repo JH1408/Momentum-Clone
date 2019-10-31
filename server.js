@@ -26,13 +26,13 @@ app.get('/', (req, res) => {
 
   fetchURL(imgBaseURL)
   .then((data)=> {
-    const city = (typeof(data.location)=="undefined") 
-        ? '' 
+    const city = (typeof(data.location)=="undefined")
+        ? ''
         : (typeof(data.location.city)=="undefined")
           ? ''
           : data.location.city;
-    const country = (typeof(data.location)=="undefined") 
-        ? '' 
+    const country = (typeof(data.location)=="undefined")
+        ? ''
         : (typeof(data.location.country)=="undefined")
           ? ''
           : data.location.country;
